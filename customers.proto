@@ -1,0 +1,48 @@
+syntax = "proto3";
+
+service RestaurantService {
+    rpc GetAll (Empty) returns (FoodList) {}
+    rpc Get (FoodRequestId) returns (Food) {}
+    rpc Insert (Food) returns (Food) {}
+    rpc Update (Food) returns (Food) {}
+    rpc Remove (FoodRequestId) returns (Empty) {}
+    rpc GetAllOrder (Empty) returns (OrderList) {}
+    rpc GetOrder (OrderRequestId) returns (Order) {}
+    rpc InsertOrder (Order) returns (Order) {}
+}
+
+message Empty {}
+
+message Food {
+    string index = 1;
+    string name = 2;
+    float value = 3;
+}
+
+message FoodList {
+    repeated Food foods = 1;
+}
+
+message FoodRequestId {
+    string index = 1;
+}
+
+message Order{
+    string nPedido = 1;
+    repeated OrderData data = 2;
+}
+
+message OrderData{
+    int32 index = 1;
+    string name = 2;
+    float value = 3;
+    int32 quantidade = 4;
+}
+
+message OrderList {
+    repeated Order orders = 1;
+}
+
+message OrderRequestId {
+    string nPedido = 1;
+}
